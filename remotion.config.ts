@@ -13,14 +13,6 @@ Config.setOverwriteOutput(true);
 Config.overrideWebpackConfig((currentConfig) => {
   return {
     ...currentConfig,
-    devtool: false,
-    optimization: {
-      minimize: false,
-    },
-    output: {
-      ...(currentConfig.output ?? {}),
-      hashFunction: 'md5',
-    },
-    cache: false,
+    cache: true,
   };
 });
