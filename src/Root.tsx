@@ -6,6 +6,8 @@ import { CodexComposition } from "./components/Codex";
 import { ThreeDSampleComposition } from "./components/3d-sample";
 import { LogoIntroComposition, defaultLogoIntroProps } from "./components/LogoIntro";
 import { Codexwith3dComposition } from "./components/Codex-with-3d";
+import { AbiemaxeyVideo } from "./components/OpenClawd";
+import { AbiemaxeyVisaReel } from "./components/AbiemaxeyVisa";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -61,6 +63,22 @@ export const RemotionRoot: React.FC = () => {
         id="BuddyCommandReelDark"
         component={BuddyCommandReelDark}
         durationInFrames={300}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="Abiemaxey"
+        component={AbiemaxeyVideo}
+        durationInFrames={1120}
+        fps={30}
+        width={1080}
+        height={700}
+      />
+      <Composition
+        id="AbiemaxeyVisaReel"
+        component={AbiemaxeyVisaReel}
+        durationInFrames={900}
         fps={30}
         width={1080}
         height={1920}
