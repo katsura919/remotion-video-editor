@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abie Maxey ~ UI Kit</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  /* ━━━ UI KIT SHELL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  html { scroll-behavior: smooth; }
+  body { margin: 0; padding: 0; }
+
+  /* Floating glass-pill nav (the brand's signature dock) */
+  .dock {
+    position: fixed; top: 18px; left: 50%;
+    transform: translateX(-50%); z-index: 50;
+    background: rgba(249,245,242,0.7);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--r-full);
+    padding: 6px 6px 6px 22px;
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    box-shadow: 0 2px 24px rgba(58,58,58,0.06);
+  }
+  .dock .brand {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 13px; padding-right: 10px; border-right: 1px solid var(--border);
+  }
+  .dock a {
+    color: var(--muted-fg); text-decoration: none;
+    padding: 8px 12px; border-radius: var(--r-full);
+    transition: all 200ms;
+  }
+  .dock a:hover { color: var(--fg); background: rgba(227,169,156,0.12); }
+  .dock .cta {
+    background: var(--fg); color: var(--bg);
+    padding: 8px 14px 8px 16px; border-radius: var(--r-full);
+    margin-left: 4px;
+  }
+  .dock .cta:hover { background: rgba(58,58,58,0.85); color: var(--bg); }
+
+  /* ━━━ SECTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  section {
+    padding: 96px clamp(24px, 4vw, 96px) 56px;
+    max-width: 2200px; margin: 0 auto;
+    border-bottom: 1px dashed var(--border);
+  }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
+  .sec-num {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 22px; color: var(--muted-fg);
+  }
+  .sec-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: clamp(36px, 5vw, 56px); line-height: 0.92; margin: 0;
+  }
+  .sec-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .sec-sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 17px; line-height: 1.55;
+    max-width: 600px; margin: 12px 0 0;
+  }
+
+  /* ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .hero {
+    padding: 156px clamp(24px, 4vw, 96px) 96px;
+    border-bottom: 1px dashed var(--border);
+    max-width: 2200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end;
+  }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 32px; } }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 28px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--primary);
+  }
+  .hero-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.86; font-size: clamp(60px, 9vw, 120px);
+    margin: 0; color: var(--fg);
+  }
+  .hero-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .hero-h em.peach { color: var(--primary); opacity: 1; }
+  .hero-side .quote {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 19px; line-height: 1.55; color: var(--muted-fg);
+    border-left: 2px solid var(--primary); padding-left: 18px;
+    margin: 0 0 24px;
+  }
+  .hero-side .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg);
+  }
+  .hero-meta-row {
+    margin-top: 56px; display: flex; gap: 56px; flex-wrap: wrap;
+    padding-top: 32px; border-top: 1px solid var(--border);
+  }
+  .hero-meta-row .item .lbl {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 6px;
+  }
+  .hero-meta-row .item .val {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 15px; color: var(--fg);
+  }
+
+  /* ━━━ FOUNDATIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .three { grid-template-columns: 1fr; } }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .two { grid-template-columns: 1fr; } }
+  .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 800px) { .four { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Color swatch (compact) */
+  .sw {
+    height: 140px; border-radius: var(--r-xl); padding: 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border: 1px solid var(--border);
+  }
+  .sw .nm {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tight);
+    font-size: 13px;
+  }
+  .sw .role {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 12px; opacity: 0.7; margin-top: 2px;
+  }
+  .sw .hex {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.05em; opacity: 0.55;
+  }
+
+  /* Type specimen tile */
+  .typ-tile {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 28px;
+  }
+  .typ-tile .meta {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary); margin-bottom: 14px;
+  }
+  .typ-tile .specimen { font-size: 36px; line-height: 1.1; margin: 0 0 8px; color: var(--fg); }
+  .typ-tile .specimen.sans { font-family: var(--font-sans); font-weight: 900; text-transform: uppercase; letter-spacing: var(--tr-tighter); }
+  .typ-tile .specimen.serif { font-family: var(--font-serif); font-style: italic; }
+  .typ-tile .specimen.mono { font-family: var(--font-mono); font-size: 22px; }
+  .typ-tile .role {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 13px; line-height: 1.5;
+  }
+
+  /* Spacing scale strip */
+  .spacing-strip {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 28px;
+  }
+  .sp-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 6px 0;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted-fg);
+  }
+  .sp-row .b {
+    background: var(--primary); height: 14px; border-radius: 3px;
+  }
+  .sp-row b { color: var(--fg); font-family: var(--font-mono); font-weight: 400; width: 40px; display: inline-block; }
+
+  .radii { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .rad {
+    width: 56px; height: 56px; background: var(--primary);
+    color: var(--bg); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 9px;
+  }
+
+  /* ━━━ COMPONENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .specimen-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 32px;
+  }
+  .specimen-card.dark { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+  .specimen-card .cap {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 22px;
+  }
+  .specimen-card.dark .cap { color: var(--primary); }
+  .group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--fg); color: var(--bg);
+    border-radius: var(--r-full);
+    padding: 6px 6px 6px 22px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; cursor: pointer; border: 0;
+    transition: all 200ms;
+  }
+  .btn-primary:hover { transform: scale(1.02); }
+  .specimen-card.dark .btn-primary { background: var(--bg); color: var(--fg); }
+  .btn-primary .chip {
+    width: 30px; height: 30px;
+    background: rgba(249,245,242,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .specimen-card.dark .btn-primary .chip { background: rgba(58,58,58,0.12); }
+  .btn-peach {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary); color: var(--fg);
+    border-radius: var(--r-full); padding: 11px 20px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; cursor: pointer; border: 0;
+    transition: all 200ms;
+  }
+  .btn-peach:hover { background: rgba(227,169,156,0.85); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--primary); border-radius: var(--r-full);
+    padding: 10px 20px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; cursor: pointer;
+    transition: all 200ms;
+  }
+  .btn-outline:hover { background: rgba(227,169,156,0.08); }
+  .specimen-card.dark .btn-outline { color: var(--bg); }
+  .btn-mono {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted-fg);
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    text-decoration: none; cursor: pointer; padding: 6px 0;
+    transition: color 200ms;
+  }
+  .btn-mono:hover { color: var(--primary); }
+
+  /* Pills */
+  .pill-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(227,169,156,0.1);
+    border: 1px solid rgba(227,169,156,0.25);
+    border-radius: var(--r-full); padding: 5px 12px;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--primary); font-weight: 700;
+  }
+  .pill-cat {
+    display: inline-flex; align-items: center;
+    background: var(--secondary); border-radius: var(--r-full);
+    padding: 5px 12px;
+    font-family: var(--font-mono); font-size: 9px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--fg);
+  }
+  .live {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--muted-fg);
+  }
+  .live .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #ef4444;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); }
+    70% { box-shadow: 0 0 0 7px rgba(239,68,68,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  }
+
+  /* Cards inside the cards row */
+  .pb-card {
+    background: rgba(227,169,156,0.07);
+    border: 1px solid rgba(227,169,156,0.3);
+    border-radius: var(--r-xl); padding: 28px;
+  }
+  .pb-card .emj { font-size: 28px; margin-bottom: 16px; }
+  .pb-card h3 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 20px; line-height: 0.95; margin: 0 0 4px;
+  }
+  .pb-card .stitle {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 13px; color: var(--muted-fg); margin: 0 0 14px;
+  }
+  .pb-card .meta {
+    display: flex; gap: 14px; font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg);
+  }
+  .img-card {
+    position: relative; aspect-ratio: 4/3;
+    border-radius: var(--r-xl); overflow: hidden;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.92) 100%),
+                radial-gradient(circle at 30% 20%, #a89282, #2a1f1a 80%);
+    padding: 18px; color: white;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .img-card .top { display: flex; justify-content: space-between; }
+  .img-card .pill {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-full); padding: 4px 10px;
+    font-family: var(--font-mono); font-size: 8px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: rgba(255,255,255,0.75);
+  }
+  .img-card .ttl {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 22px; line-height: 0.95; margin: 0;
+  }
+  .img-card .ttl em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+
+  /* Stickers strip */
+  .stk-strip {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 18px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .stk-tile {
+    aspect-ratio: 1;
+    background: rgba(227,169,156,0.06);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px; transition: transform 250ms;
+  }
+  .stk-tile:hover { transform: translateY(-3px) rotate(-3deg); }
+  .stk-tile img { width: 80%; height: 80%; object-fit: contain; }
+
+  /* Big ending moment */
+  .closing {
+    background: var(--fg); color: var(--bg);
+    margin: 96px auto 0; max-width: 2200px;
+    padding: 128px clamp(24px, 4vw, 96px);
+    border-bottom: 0;
+    position: relative; overflow: hidden;
+  }
+  .closing::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .closing-h {
+    position: relative;
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.86; font-size: clamp(72px, 12vw, 160px);
+    margin: 0; color: var(--bg);
+  }
+  .closing-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; color: var(--primary);
+  }
+  .closing-foot {
+    position: relative; margin-top: 64px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(249,245,242,0.15);
+  }
+  .closing-foot .lbl {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: rgba(249,245,242,0.5);
+  }
+
+  /* Quick caption under each component card */
+  .micro-cap {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-top: 8px; padding-left: 4px;
+  }
+
+  /* IG carousel preview */
+  .ig-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 800px) { .ig-grid { grid-template-columns: 1fr; } }
+  .ig {
+    aspect-ratio: 1; border-radius: var(--r-lg);
+    padding: clamp(20px, 3vw, 36px);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ig .num {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    opacity: 0.5;
+  }
+  .ig .url {
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    opacity: 0.4;
+  }
+  .ig .ig-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: clamp(22px, 3.2vw, 36px); line-height: 0.92;
+    margin: 0;
+  }
+  .ig .ig-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .ig.dark { background: var(--fg); color: var(--bg); }
+  .ig.dark .ig-h em.peach { color: var(--primary); opacity: 1; }
+  .ig.peach { background: var(--primary); color: var(--fg); }
+  .ig.cream { background: var(--bg); color: var(--fg); border: 1px solid var(--border); }
+  .ig.cream .ig-h em.peach { color: var(--primary); opacity: 1; }
+  .ig .footer-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+
+  /* TOC at top */
+  .toc {
+    max-width: 2200px; margin: 0 auto;
+    padding: 32px clamp(24px, 4vw, 96px) 0;
+    display: flex; gap: 32px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg);
+  }
+  .toc a { color: var(--muted-fg); text-decoration: none; transition: color 200ms; }
+  .toc a:hover { color: var(--primary); }
+  .toc .sep { opacity: 0.3; }
+</style>
+</head>
+<body>
+
+<!-- floating dock -->
+<div class="dock">
+  <span class="brand">Abie<em style="font-family:var(--font-serif); font-weight:400; font-style:italic; text-transform:lowercase; letter-spacing:0; opacity:0.85;">·</em>Maxey</span>
+  <a href="#hero">Home</a>
+  <a href="#foundations">Foundations</a>
+  <a href="#components">Components</a>
+  <a href="#brand">Brand</a>
+  <a class="cta" href="#closing">Work with me →</a>
+</div>
+
+<!-- ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<header id="hero" class="hero">
+  <div>
+    <div class="hero-eyebrow">Design system ~ v1.0 ~ live</div>
+    <h1 class="hero-h">
+      Filipina.<br/>
+      <em class="peach">building from</em><br/>
+      Madrid.
+    </h1>
+    <div class="hero-meta-row">
+      <div class="item">
+        <div class="lbl">~ Voice</div>
+        <div class="val">Smart, honest, systems-first</div>
+      </div>
+      <div class="item">
+        <div class="lbl">~ Connector</div>
+        <div class="val">Tilde, never em-dash</div>
+      </div>
+      <div class="item">
+        <div class="lbl">~ Anchor</div>
+        <div class="val">#e3a99c · dusty peach</div>
+      </div>
+    </div>
+  </div>
+  <aside class="hero-side">
+    <p class="quote">Cheap living often creates cheap thinking. Freedom is expensive. And you are paying for it with your loneliness.</p>
+    <div class="meta">~ Sample copy · 27 countries later</div>
+  </aside>
+</header>
+
+<!-- TOC -->
+<nav class="toc">
+  <span>~ On this page</span>
+  <a href="#foundations">01 ~ Foundations</a><span class="sep">·</span>
+  <a href="#components">02 ~ Components</a><span class="sep">·</span>
+  <a href="#brand">03 ~ Brand</a><span class="sep">·</span>
+  <a href="#carousel">04 ~ IG carousel</a><span class="sep">·</span>
+  <a href="#closing">05 ~ Closing</a>
+</nav>
+
+<!-- ━━━ FOUNDATIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="foundations">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-h">Foundations <em>~</em> color, type, space.</h2>
+  </div>
+  <p class="sec-sub">Three families. Ten color tokens. Eight spacing steps. Restraint is the whole point.</p>
+
+  <!-- Colors -->
+  <div style="margin-top: 48px;">
+    <p class="micro-cap" style="margin-bottom: 12px;">~ Light palette · default canvas</p>
+    <div class="four">
+      <div class="sw" style="background:#f9f5f2; color:#3a3a3a;">
+        <div><div class="nm">Background</div><div class="role">Warm off-white</div></div>
+        <div class="hex">#f9f5f2 · --bg</div>
+      </div>
+      <div class="sw" style="background:#3a3a3a; color:#f9f5f2; border-color:#3a3a3a;">
+        <div><div class="nm">Foreground</div><div class="role">Charcoal</div></div>
+        <div class="hex">#3a3a3a · --fg</div>
+      </div>
+      <div class="sw" style="background:#e3a99c; color:#3a3a3a;">
+        <div><div class="nm">Primary</div><div class="role">Dusty peach</div></div>
+        <div class="hex">#e3a99c · --primary</div>
+      </div>
+      <div class="sw" style="background:#e7ddd3; color:#3a3a3a;">
+        <div><div class="nm">Secondary</div><div class="role">Warm sand</div></div>
+        <div class="hex">#e7ddd3 · --secondary</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Type -->
+  <div style="margin-top: 48px;">
+    <p class="micro-cap" style="margin-bottom: 12px;">~ Type families · sans / serif / mono</p>
+    <div class="three">
+      <div class="typ-tile">
+        <div class="meta">~ Sans · headlines &amp; UI</div>
+        <p class="specimen sans">Host Grotesk</p>
+        <p class="role">font-black UPPERCASE, tracking-tighter. Two weights only: 400 &amp; 900.</p>
+      </div>
+      <div class="typ-tile">
+        <div class="meta">~ Serif · italic accent</div>
+        <p class="specimen serif">Instrument Serif</p>
+        <p class="role">italic, lowercase. Lives inside headlines as an accent and runs body when narrative.</p>
+      </div>
+      <div class="typ-tile">
+        <div class="meta">~ Mono · meta labels</div>
+        <p class="specimen mono">Geist Mono</p>
+        <p class="role">9–11px, UPPERCASE, tracking-widest. Section numbers &amp; captions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacing & radius -->
+  <div style="margin-top: 48px;">
+    <div class="two">
+      <div class="spacing-strip">
+        <p class="micro-cap" style="margin-bottom: 14px;">~ Spacing scale (4px base)</p>
+        <div class="sp-row"><b>1</b><div class="b" style="width:4px;"></div> 4px · icon gap</div>
+        <div class="sp-row"><b>2</b><div class="b" style="width:8px;"></div> 8px · tight</div>
+        <div class="sp-row"><b>4</b><div class="b" style="width:16px;"></div> 16px · standard</div>
+        <div class="sp-row"><b>6</b><div class="b" style="width:24px;"></div> 24px · section</div>
+        <div class="sp-row"><b>8</b><div class="b" style="width:32px;"></div> 32px · card padding</div>
+        <div class="sp-row"><b>16</b><div class="b" style="width:64px;"></div> 64px · section py</div>
+        <div class="sp-row"><b>24</b><div class="b" style="width:96px;"></div> 96px · hero pad</div>
+      </div>
+      <div class="spacing-strip">
+        <p class="micro-cap" style="margin-bottom: 14px;">~ Radius scale</p>
+        <div class="radii">
+          <div class="rad" style="border-radius:6px;">6</div>
+          <div class="rad" style="border-radius:10px;">10</div>
+          <div class="rad" style="border-radius:18px;">18</div>
+          <div class="rad" style="border-radius:26px;">26</div>
+          <div class="rad" style="border-radius:9999px;">∞</div>
+        </div>
+        <p class="role" style="font-family:var(--font-serif); font-style:italic; color:var(--muted-fg); font-size:13px; margin: 18px 0 0;">badges (6) → inputs (10) → cards (18) → hero (26) → pills (∞).</p>
+        <p class="micro-cap" style="margin: 28px 0 14px;">~ The shadow rule</p>
+        <p style="font-family: var(--font-serif); font-style: italic; color: var(--muted-fg); font-size: 14px; line-height: 1.55; margin: 0;">No drop shadows on UI. Surfaces differ via <span style="font-family:var(--font-mono); color:var(--primary);">border</span> + <span style="font-family:var(--font-mono); color:var(--primary);">bg</span>, never elevation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ COMPONENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="components">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-h">Components <em>~</em> in the wild.</h2>
+  </div>
+  <p class="sec-sub">Pill buttons, soft-fill pills, and four card patterns do almost everything on the site.</p>
+
+  <!-- Buttons -->
+  <div class="two" style="margin-top: 48px;">
+    <div class="specimen-card">
+      <div class="cap">~ Buttons · light</div>
+      <div class="group">
+        <a class="btn-primary">Work with me <span class="chip">→</span></a>
+        <a class="btn-outline">All Posts →</a>
+        <a class="btn-mono">Browse all tools →</a>
+      </div>
+    </div>
+    <div class="specimen-card dark">
+      <div class="cap">~ Buttons · dark</div>
+      <div class="group">
+        <a class="btn-primary">Sign up free <span class="chip">→</span></a>
+        <a class="btn-peach">Read the post</a>
+        <a class="btn-mono" style="color:rgba(249,245,242,0.5);">Subscribe →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pills -->
+  <div class="specimen-card" style="margin-top: 16px;">
+    <div class="cap">~ Pills, badges, status</div>
+    <div class="group" style="gap: 16px;">
+      <span class="pill-status">⚡ Creator × Engineer</span>
+      <span class="pill-status">~ Live in Madrid</span>
+      <span class="pill-cat">Playbook</span>
+      <span class="pill-cat">Visa</span>
+      <span class="pill-cat">Tools</span>
+      <span class="live"><span class="dot"></span> Latest on YouTube</span>
+      <span style="font-family:var(--font-serif); font-style:italic; color:var(--muted-fg); font-size:18px;">01 ~ Who I Am</span>
+      <span style="font-family:var(--font-mono); font-size:10px; letter-spacing:var(--tr-mono); text-transform:uppercase; color:rgba(58,58,58,0.4);">01 / 06</span>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="three" style="margin-top: 16px;">
+    <div class="pb-card">
+      <div class="emj">⚡</div>
+      <h3>Master Claude</h3>
+      <p class="stitle">From first prompt to production agent.</p>
+      <div class="meta">📖 15 Lessons · ⏱ ~4.5 hrs</div>
+    </div>
+    <div class="pb-card">
+      <div class="emj">⚙️</div>
+      <h3>The Nomad OS</h3>
+      <p class="stitle">Build the operating system for your life abroad.</p>
+      <div class="meta">📖 12 Lessons · ⏱ ~3 hrs</div>
+    </div>
+    <div class="img-card">
+      <div class="top"><span class="pill">~ Visa</span><span style="font-family:var(--font-mono); font-size:9px; letter-spacing:var(--tr-mono); color:rgba(255,255,255,0.4);">01</span></div>
+      <h3 class="ttl">Reverse <em>geo-arbitrage</em></h3>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ BRAND ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="brand">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-h">Brand <em>~</em> stickers, logo, voice.</h2>
+  </div>
+  <p class="sec-sub">21 hand-drawn stickers replace every emoji you'd be tempted to use. The only allowed punctuation upgrade.</p>
+
+  <div class="stk-strip" style="margin-top: 32px;">
+    <div class="stk-tile"><img src="assets/stickers/smiling_portrait.png" alt="smiling"/></div>
+    <div class="stk-tile"><img src="assets/stickers/winking_peace.png" alt="winking"/></div>
+    <div class="stk-tile"><img src="assets/stickers/thumbs_up.png" alt="thumbs"/></div>
+    <div class="stk-tile"><img src="assets/stickers/thinking_ellipsis.png" alt="thinking"/></div>
+    <div class="stk-tile"><img src="assets/stickers/shouting_megaphone.png" alt="megaphone"/></div>
+    <div class="stk-tile"><img src="assets/stickers/sitting_with_laptop.png" alt="laptop"/></div>
+    <div class="stk-tile"><img src="assets/stickers/working_on_laptop.png" alt="working"/></div>
+    <div class="stk-tile"><img src="assets/stickers/sleepy_zzz.png" alt="sleepy"/></div>
+    <div class="stk-tile"><img src="assets/stickers/excited_sparkles.png" alt="excited"/></div>
+    <div class="stk-tile"><img src="assets/stickers/laughing_ha.png" alt="laughing"/></div>
+    <div class="stk-tile"><img src="assets/stickers/holding_yt.png" alt="yt"/></div>
+    <div class="stk-tile"><img src="assets/stickers/move_to_spain_playbook.png" alt="spain"/></div>
+    <div class="stk-tile"><img src="assets/stickers/overwhelmed_shocked.png" alt="overwhelmed"/></div>
+    <div class="stk-tile"><img src="assets/stickers/sad_worried.png" alt="sad"/></div>
+    <div class="stk-tile"><img src="assets/stickers/angry_crossed_arms.png" alt="angry"/></div>
+    <div class="stk-tile"><img src="assets/stickers/crying_tears.png" alt="crying"/></div>
+    <div class="stk-tile"><img src="assets/stickers/furious_on_fire.png" alt="furious"/></div>
+    <div class="stk-tile"><img src="assets/stickers/shocked_worried.png" alt="shocked"/></div>
+  </div>
+</section>
+
+<!-- ━━━ IG CAROUSEL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="carousel">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2 class="sec-h">IG carousel <em>~</em> the system at 1080.</h2>
+  </div>
+  <p class="sec-sub">Square 1080×1080, 72px safe padding. Backgrounds alternate dark / cream / peach. URL and slide counter always present in mono.</p>
+
+  <div class="ig-grid" style="margin-top: 32px;">
+    <div class="ig dark">
+      <div class="num">01 / 06</div>
+      <h3 class="ig-h">Cheap living often creates <em class="peach">cheap thinking.</em></h3>
+      <div class="footer-row">
+        <span class="url">abiemaxey.com</span>
+        <span class="num">→</span>
+      </div>
+    </div>
+    <div class="ig cream">
+      <div class="num">02 / 06</div>
+      <h3 class="ig-h">Freedom is <em>expensive.</em><br/>And you are paying for it.</h3>
+      <div class="footer-row">
+        <span class="url">abiemaxey.com</span>
+        <span class="num">→</span>
+      </div>
+    </div>
+    <div class="ig peach">
+      <div class="num">03 / 06</div>
+      <h3 class="ig-h">Reverse <em>geo-</em><br/>arbitrage.</h3>
+      <div class="footer-row">
+        <span class="url">abiemaxey.com</span>
+        <span class="num">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ CLOSING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="closing" class="closing">
+  <div style="position:relative;">
+    <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:var(--tr-mono); text-transform:uppercase; color:var(--primary); margin-bottom: 24px;">~ The mega moment</div>
+    <h2 class="closing-h">Let's<br/><em>talk.</em></h2>
+    <div class="closing-foot">
+      <span class="lbl">~ Built 2025 · v1.0 · Madrid</span>
+      <a class="btn-primary" style="background:var(--primary); color:var(--fg);">hello@abiemaxey.com <span class="chip" style="background:rgba(58,58,58,0.12);">↗</span></a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

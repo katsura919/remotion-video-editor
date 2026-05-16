@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abie Maxey ~ Brand Intro</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 18px;
+  }
+  .hero-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.88; font-size: clamp(56px, 8vw, 96px);
+    color: var(--fg); margin: 0 0 24px;
+  }
+  .hero-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .lede {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5;
+    color: var(--muted-fg); max-width: 640px; margin-bottom: 56px;
+  }
+
+  .grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px; margin-bottom: 56px;
+  }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+
+  .pill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 28px;
+  }
+  .pill-card .num {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary); margin-bottom: 14px; display: block;
+  }
+  .pill-card h3 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 22px; line-height: 0.95; margin: 0 0 10px;
+  }
+  .pill-card p {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 14px; line-height: 1.6; color: var(--muted-fg); margin: 0;
+  }
+
+  .recipe {
+    background: var(--fg); color: var(--bg);
+    border-radius: calc(var(--r-xl) * 1.4);
+    padding: 56px clamp(32px, 5vw, 72px);
+    position: relative; overflow: hidden;
+  }
+  .recipe::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px);
+    background-size: 32px 32px; pointer-events: none;
+  }
+  .recipe-label {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary); margin-bottom: 28px; position: relative;
+  }
+  .recipe-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 7vw, 80px);
+    margin: 0 0 24px; position: relative;
+  }
+  .recipe-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .recipe-h em.peach { color: var(--primary); opacity: 1; }
+  .recipe-quote {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(20px, 2vw, 26px); line-height: 1.4;
+    color: rgba(249,245,242,0.65); max-width: 640px;
+    margin-top: 32px; position: relative;
+  }
+  .recipe-quote .accent { color: var(--primary); }
+
+  .annotate {
+    position: absolute; top: 32px; right: 32px;
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: rgba(249,245,242,0.3); text-align: right;
+  }
+  .annotate b { color: var(--primary); font-weight: 400; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">00 ~ The Brand</div>
+    <h1 class="hero-h">Smart, <em>honest,</em><br/>systems-first.</h1>
+    <p class="lede">Personal brand OS for Joenabie Gamao ~ Filipina operator, builder, digital nomad. Building from Madrid. Three businesses, one suitcase.</p>
+
+    <div class="grid">
+      <div class="pill-card">
+        <span class="num">~ Voice</span>
+        <h3>Receipts, not<br/>promises.</h3>
+        <p>"I went through it; here's what broke." Specific, lived, unmotivational.</p>
+      </div>
+      <div class="pill-card">
+        <span class="num">~ Punctuation</span>
+        <h3>Tilde, never<br/>em-dash.</h3>
+        <p>The ~ is the brand's signature mark. It reads as breath, not interruption.</p>
+      </div>
+      <div class="pill-card">
+        <span class="num">~ Structure</span>
+        <h3>Numbered<br/>sections.</h3>
+        <p>Two-digit, zero-padded, italic-serif. 01 ~ Who I Am. The system shows.</p>
+      </div>
+    </div>
+
+    <div class="recipe">
+      <div class="annotate">
+        The signature recipe:<br/>
+        <b>black uppercase sans</b><br/>
+        <b>+ italic lowercase serif</b>
+      </div>
+      <div class="recipe-label">~ Headline construction</div>
+      <h2 class="recipe-h">Filipina.<br/><em class="peach">building from</em><br/>Madrid.</h2>
+      <p class="recipe-quote">"Cheap living often creates cheap thinking. Freedom is expensive. And you are paying for it with your <span class="accent">loneliness.</span>"</p>
+    </div>
+  </div>
+</body>
+</html>

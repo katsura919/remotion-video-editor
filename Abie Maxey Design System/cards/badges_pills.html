@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Badges &amp; Pills</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 6vw, 72px);
+    margin: 0 0 12px;
+  }
+  h1 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 18px; margin: 0 0 48px; max-width: 600px;
+  }
+
+  .row {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 32px; margin-bottom: 16px;
+  }
+  .row .lbl {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 20px;
+  }
+  .group { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  /* Status pill ~ class badge */
+  .pill-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(227,169,156,0.1);
+    border: 1px solid rgba(227,169,156,0.25);
+    border-radius: var(--r-full);
+    padding: 6px 14px;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--primary); font-weight: 700;
+  }
+  .pill-status .ic { width: 11px; height: 11px; color: var(--primary); }
+
+  .pill-cat {
+    display: inline-flex; align-items: center;
+    background: var(--secondary);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
+    font-family: var(--font-mono); font-size: 9px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--fg);
+  }
+  .pill-tinted {
+    display: inline-flex; align-items: center;
+    background: rgba(227,169,156,0.18);
+    color: var(--fg);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
+    font-family: var(--font-mono); font-size: 9px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+  }
+
+  /* Featured tag (orange-y on dark hero) */
+  .pill-featured {
+    display: inline-flex; align-items: center;
+    background: rgba(227,169,156,0.2);
+    color: var(--primary);
+    border-radius: var(--r-full);
+    padding: 3px 8px;
+    font-family: var(--font-mono); font-size: 8px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+  }
+
+  /* Live dot */
+  .live {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: var(--muted-fg);
+  }
+  .live .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #ef4444;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 0 rgba(239,68,68,0.5);
+  }
+  .live.green .dot { background: #34d399; box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+  .live.amber .dot { background: #fbbf24; box-shadow: 0 0 0 0 rgba(251,191,36,0.5); }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+    100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+  }
+
+  /* Section number ~ italic serif eyebrow */
+  .eyebrow-serif {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 22px;
+  }
+
+  /* Carousel counter */
+  .counter {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: rgba(58,58,58,0.4);
+  }
+
+  /* On-image badge sample */
+  .image-mock {
+    background: linear-gradient(180deg, rgba(58,58,58,0.4), rgba(58,58,58,0.95)),
+                radial-gradient(circle at 30% 20%, #a89282 0%, #4a3a30 70%);
+    border-radius: var(--r-xl);
+    padding: 18px;
+    height: 180px; position: relative;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+  }
+  .image-mock .top { display: flex; justify-content: space-between; }
+  .pill-on-image {
+    display: inline-flex; align-items: center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-full);
+    padding: 5px 12px;
+    font-family: var(--font-mono); font-size: 8px;
+    text-transform: uppercase; letter-spacing: var(--tr-mono);
+    color: rgba(255,255,255,0.75);
+  }
+  .image-mock .ttl {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 22px; line-height: 0.95;
+    color: white; max-width: 280px;
+  }
+  .image-mock .ttl em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .image-mock .idx-mono {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* Bolt icon as svg mask */
+  .ic-bolt {
+    width: 11px; height: 11px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>") no-repeat center / contain;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">04.2 ~ Badges &amp; pills</div>
+    <h1>Mono <em>labels.</em><br/>Soft-fill <em>pills.</em></h1>
+    <p class="sub">Tiny uppercase mono labels do most of the meta-information lifting on the site. The status pill is THE most-used component.</p>
+
+    <div class="row">
+      <div class="lbl">~ Status pill (the workhorse)</div>
+      <div class="group">
+        <span class="pill-status"><span class="ic ic-bolt"></span> Creator × Engineer</span>
+        <span class="pill-status">~ Live in Madrid</span>
+        <span class="pill-status">New ~ this week</span>
+        <span class="pill-status">Featured</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="lbl">~ Category chips &amp; meta</div>
+      <div class="group">
+        <span class="pill-cat">Playbook</span>
+        <span class="pill-cat">Visa</span>
+        <span class="pill-cat">Tools</span>
+        <span class="pill-tinted">Phase 01</span>
+        <span class="pill-tinted">~4.5 hrs</span>
+        <span class="pill-tinted">12 lessons</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="lbl">~ Live status &amp; section numbers</div>
+      <div class="group" style="gap: 28px;">
+        <span class="live"><span class="dot"></span> Latest on YouTube</span>
+        <span class="live green"><span class="dot"></span> Live now</span>
+        <span class="live amber"><span class="dot"></span> Building</span>
+        <span class="eyebrow-serif">01 ~ Who I Am</span>
+        <span class="counter">01 / 06</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="lbl">~ Pills on imagery (frosted glass)</div>
+      <div class="grid2">
+        <div class="image-mock">
+          <div class="top">
+            <span class="pill-on-image">~ Visa</span>
+            <span class="idx-mono">01</span>
+          </div>
+          <h4 class="ttl">Reverse <em>geo-arbitrage</em></h4>
+        </div>
+        <div class="image-mock" style="background: linear-gradient(180deg, rgba(58,58,58,0.4), rgba(58,58,58,0.95)), radial-gradient(circle at 70% 30%, #c8b8a0 0%, #5a4a3a 70%);">
+          <div class="top">
+            <span class="pill-on-image">~ Systems</span>
+            <span class="idx-mono">02</span>
+          </div>
+          <h4 class="ttl">The <em>nomad OS</em></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

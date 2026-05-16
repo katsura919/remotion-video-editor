@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Color Palette</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 6vw, 72px);
+    margin: 0 0 12px;
+  }
+  h1 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 18px; margin: 0 0 48px; max-width: 580px;
+  }
+
+  .panel {
+    border: 1px solid var(--border); border-radius: var(--r-xl);
+    overflow: hidden; margin-bottom: 28px;
+  }
+  .panel-head {
+    padding: 18px 28px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .swatches {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  @media (max-width: 800px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+  .swatch {
+    padding: 28px 24px 24px; min-height: 160px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid var(--border);
+  }
+  .swatch:last-child { border-right: 0; }
+  .swatch .name {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tight);
+    font-size: 13px; line-height: 1.1;
+  }
+  .swatch .role {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 12px; line-height: 1.4; opacity: 0.7;
+    margin-top: 4px;
+  }
+  .swatch .hex {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.1em; opacity: 0.6;
+  }
+
+  /* Dark panel uses inline dark tokens via [data-theme] */
+  [data-theme="dark"] {
+    background: #1e1b1a; color: #f9f5f2;
+    --border: #3d3836;
+  }
+
+  /* Showcase ~ primary as highlighter */
+  .showcase {
+    margin-top: 16px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 48px clamp(24px, 4vw, 56px);
+  }
+  .showcase-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: clamp(36px, 5vw, 56px); line-height: 0.95; margin: 0;
+  }
+  .showcase-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .showcase-h .hl { color: var(--primary); }
+  .showcase-cap {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">02.1 ~ Color</div>
+    <h1>Warm <em>paper</em>, dusty<br/><em>peach</em> as anchor.</h1>
+    <p class="sub">One primary that lives in both light and dark. Everything else flips. Never fully saturated.</p>
+
+    <!-- Light panel -->
+    <div class="panel">
+      <div class="panel-head"><span class="dot" style="background:#f9f5f2;border:1px solid #e7ddd3"></span> Light · default</div>
+      <div class="swatches">
+        <div class="swatch" style="background:#f9f5f2;color:#3a3a3a;">
+          <div><div class="name">Background</div><div class="role">Warm off-white. The canvas.</div></div>
+          <div class="hex">#f9f5f2 · --bg</div>
+        </div>
+        <div class="swatch" style="background:#3a3a3a;color:#f9f5f2;border-color:#3a3a3a;">
+          <div><div class="name">Foreground</div><div class="role">Charcoal. Never pure black.</div></div>
+          <div class="hex">#3a3a3a · --fg</div>
+        </div>
+        <div class="swatch" style="background:#e3a99c;color:#3a3a3a;">
+          <div><div class="name">Primary</div><div class="role">Dusty peach. The accent.</div></div>
+          <div class="hex">#e3a99c · --primary</div>
+        </div>
+        <div class="swatch" style="background:#f2d6c9;color:#3a3a3a;">
+          <div><div class="name">Primary soft</div><div class="role">Hovers, tints, selection.</div></div>
+          <div class="hex">#f2d6c9 · --primary-soft</div>
+        </div>
+        <div class="swatch" style="background:#e7ddd3;color:#3a3a3a;border-top:1px solid var(--border);">
+          <div><div class="name">Secondary</div><div class="role">Warm sand. Borders, dividers.</div></div>
+          <div class="hex">#e7ddd3 · --secondary</div>
+        </div>
+        <div class="swatch" style="background:#bbcccd;color:#3a3a3a;border-top:1px solid var(--border);">
+          <div><div class="name">Accent</div><div class="role">Dusty teal. Charts, data.</div></div>
+          <div class="hex">#bbcccd · --accent</div>
+        </div>
+        <div class="swatch" style="background:#ffffff;color:#3a3a3a;border-top:1px solid var(--border);">
+          <div><div class="name">Card</div><div class="role">Pure white. Cards over bg.</div></div>
+          <div class="hex">#ffffff · --card</div>
+        </div>
+        <div class="swatch" style="background:#6b6b6b;color:#f9f5f2;border-top:1px solid var(--border);">
+          <div><div class="name">Muted text</div><div class="role">Captions, meta, fineprint.</div></div>
+          <div class="hex">#6b6b6b · --muted-fg</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark panel -->
+    <div class="panel" data-theme="dark">
+      <div class="panel-head"><span class="dot" style="background:#1e1b1a;border:1px solid #3d3836"></span> Dark</div>
+      <div class="swatches">
+        <div class="swatch" style="background:#1e1b1a;color:#f9f5f2;">
+          <div><div class="name">Background</div><div class="role">Deep warm-black.</div></div>
+          <div class="hex">#1e1b1a · --bg</div>
+        </div>
+        <div class="swatch" style="background:#272422;color:#f9f5f2;">
+          <div><div class="name">Card</div><div class="role">Slightly lifted surface.</div></div>
+          <div class="hex">#272422 · --card</div>
+        </div>
+        <div class="swatch" style="background:#e3a99c;color:#1e1b1a;">
+          <div><div class="name">Primary</div><div class="role">Same peach. Anchored.</div></div>
+          <div class="hex">#e3a99c · --primary</div>
+        </div>
+        <div class="swatch" style="background:#3d3836;color:#f9f5f2;">
+          <div><div class="name">Secondary</div><div class="role">Hairlines, surfaces.</div></div>
+          <div class="hex">#3d3836 · --secondary</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase: primary as highlighter -->
+    <div class="showcase">
+      <div class="eyebrow" style="margin-bottom:18px;">~ Primary as highlighter</div>
+      <h2 class="showcase-h">Freedom is <em>expensive.</em> And you are paying for it with your <em class="hl">loneliness.</em></h2>
+      <div class="showcase-cap">→ Primary accents words inside headlines. Never as a flood-fill page bg.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 6vw, 72px);
+    margin: 0 0 12px;
+  }
+  h1 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 18px; margin: 0 0 48px; max-width: 580px;
+  }
+
+  .row {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 36px; margin-bottom: 16px;
+  }
+  .row.dark { background: var(--fg); border-color: var(--fg); }
+  .row .lbl {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 24px;
+  }
+  .row.dark .lbl { color: var(--primary); }
+  .group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+  /* PRIMARY pill button (with arrow chip) */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 16px;
+    background: var(--fg); color: var(--bg);
+    border-radius: var(--r-full);
+    padding: 6px 6px 6px 24px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; border: 0; cursor: pointer;
+    transition: all 200ms;
+  }
+  .btn-primary:hover { background: rgba(58,58,58,0.85); transform: scale(1.02); }
+  .row.dark .btn-primary { background: var(--bg); color: var(--fg); }
+  .btn-primary .chip {
+    width: 32px; height: 32px;
+    background: rgba(249,245,242,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .row.dark .btn-primary .chip { background: rgba(58,58,58,0.12); }
+
+  /* PRIMARY peach */
+  .btn-peach {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary); color: var(--fg);
+    border-radius: var(--r-full);
+    padding: 12px 20px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; border: 0; cursor: pointer;
+    transition: all 200ms;
+  }
+  .btn-peach:hover { background: rgba(227,169,156,0.85); }
+
+  /* Outline */
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--primary);
+    border-radius: var(--r-full);
+    padding: 11px 20px;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; cursor: pointer;
+    transition: all 200ms;
+  }
+  .btn-outline:hover { background: rgba(227,169,156,0.08); }
+  .row.dark .btn-outline { color: var(--bg); }
+
+  /* Ghost link */
+  .btn-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--muted-fg);
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: var(--tr-widest);
+    text-decoration: none; cursor: pointer;
+    transition: color 200ms;
+    padding: 6px 0;
+  }
+  .btn-link:hover { color: var(--primary); }
+  .row.dark .btn-link { color: rgba(249,245,242,0.5); }
+  .row.dark .btn-link:hover { color: var(--primary); }
+
+  /* Mono link with arrow ~ tertiary */
+  .btn-mono {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted-fg);
+    font-family: var(--font-mono); font-weight: 400;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: var(--tr-mono);
+    text-decoration: none; cursor: pointer;
+    transition: color 200ms;
+  }
+  .btn-mono:hover { color: var(--primary); }
+
+  /* Annotation strip */
+  .annot {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border: 1px solid var(--border);
+    border-radius: var(--r-xl); overflow: hidden; margin-top: 16px;
+  }
+  @media (max-width: 800px) { .annot { grid-template-columns: 1fr; } }
+  .annot div {
+    padding: 24px; border-right: 1px solid var(--border);
+  }
+  .annot div:last-child { border-right: 0; }
+  .annot .num {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 32px; line-height: 1; color: var(--primary);
+  }
+  .annot .ttl {
+    font-family: var(--font-sans); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    font-size: 12px; margin: 12px 0 6px;
+  }
+  .annot .desc {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 13px; line-height: 1.5;
+  }
+
+  /* arrow icon */
+  .arrow {
+    display: inline-block; width: 12px; height: 12px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='19' y2='12'/><polyline points='12 5 19 12 12 19'/></svg>") no-repeat center / contain;
+  }
+  .arrow.up {
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='7' y1='17' x2='17' y2='7'/><polyline points='7 7 17 7 17 17'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='7' y1='17' x2='17' y2='7'/><polyline points='7 7 17 7 17 17'/></svg>") no-repeat center / contain;
+  }
+  .arrow.cal {
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") no-repeat center / contain;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") no-repeat center / contain;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">04.1 ~ Buttons</div>
+    <h1>Pill-shaped. <em>Always.</em></h1>
+    <p class="sub">Three registers, each with one job. The chip-arrow primary CTA is the brand's most recognisable interaction element.</p>
+
+    <div class="row">
+      <div class="lbl">~ Primary CTA · "Work with me" pattern</div>
+      <div class="group">
+        <a class="btn-primary">
+          Work with me
+          <span class="chip"><span class="arrow" style="background:var(--bg);"></span></span>
+        </a>
+        <a class="btn-primary">
+          Read the post
+          <span class="chip"><span class="arrow" style="background:var(--bg);"></span></span>
+        </a>
+        <a class="btn-mono"><span class="arrow cal" style="background:currentColor;"></span> Book a Call</a>
+      </div>
+    </div>
+
+    <div class="row dark">
+      <div class="lbl">~ Primary on dark surfaces</div>
+      <div class="group">
+        <a class="btn-primary">
+          Sign up free
+          <span class="chip"><span class="arrow" style="background:var(--fg);"></span></span>
+        </a>
+        <a class="btn-peach">
+          Work with me
+        </a>
+        <a class="btn-link">Subscribe <span class="arrow" style="background:currentColor;"></span></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="lbl">~ Secondary &amp; tertiary</div>
+      <div class="group">
+        <a class="btn-outline">All Posts <span class="arrow" style="background:currentColor;"></span></a>
+        <a class="btn-link">All Playbooks <span class="arrow" style="background:currentColor;"></span></a>
+        <a class="btn-mono">Browse all tools <span class="arrow" style="background:currentColor;"></span></a>
+        <a class="btn-mono">hello@abiemaxey.com <span class="arrow up" style="background:currentColor;"></span></a>
+      </div>
+    </div>
+
+    <div class="annot">
+      <div>
+        <div class="num">01</div>
+        <div class="ttl">Pill, no exception</div>
+        <div class="desc">All buttons use border-radius: 9999px. Square buttons aren't in the system.</div>
+      </div>
+      <div>
+        <div class="num">02</div>
+        <div class="ttl">Two weights only</div>
+        <div class="desc">Sans 700 for button labels. UPPERCASE, tracking-widest, never sentence-case.</div>
+      </div>
+      <div>
+        <div class="num">03</div>
+        <div class="ttl">Arrow always</div>
+        <div class="desc">→ inline, or → in a nested chip on primary. ↗ for external links.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

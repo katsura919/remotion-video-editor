@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Typography</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 6vw, 72px);
+    margin: 0 0 12px;
+  }
+  h1 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 18px; margin: 0 0 48px; max-width: 600px;
+  }
+
+  /* Three-family grid */
+  .families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+  @media (max-width: 800px) { .families { grid-template-columns: 1fr; } }
+  .fam {
+    border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 28px; background: var(--card);
+  }
+  .fam .meta {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary); margin-bottom: 18px;
+  }
+  .fam .name {
+    font-size: 36px; line-height: 1.1; margin: 0 0 12px;
+    color: var(--fg);
+  }
+  .fam .name.sans { font-family: var(--font-sans); font-weight: 900; text-transform: uppercase; letter-spacing: var(--tr-tighter); }
+  .fam .name.serif { font-family: var(--font-serif); font-style: italic; }
+  .fam .name.mono { font-family: var(--font-mono); font-size: 24px; letter-spacing: 0; text-transform: none; }
+  .fam .role {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 14px; color: var(--muted-fg); line-height: 1.5;
+  }
+  .fam .specimen {
+    font-size: 11px; color: var(--muted-fg);
+    margin-top: 18px; padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Type scale */
+  .scale-section {
+    border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 32px clamp(24px, 4vw, 48px); background: var(--card);
+    margin-bottom: 48px;
+  }
+  .scale-section h3 {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin: 0 0 28px;
+  }
+  .row {
+    display: flex; align-items: baseline; gap: 24px;
+    padding: 14px 0; border-bottom: 1px dashed var(--border);
+  }
+  .row:last-child { border-bottom: 0; }
+  .row .label {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.1em; color: var(--muted-fg);
+    width: 130px; flex-shrink: 0;
+  }
+  .row .label b { color: var(--primary); font-weight: 400; }
+  .row .specimen {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 1; color: var(--fg);
+  }
+  .row .specimen em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+
+  /* Recipe demo */
+  .recipe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .recipe-grid { grid-template-columns: 1fr; } }
+  .ex {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 36px;
+  }
+  .ex.dark { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .ex .ex-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary); margin-bottom: 16px;
+  }
+  .ex .ex-h {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 48px; line-height: 0.92; margin: 0;
+  }
+  .ex .ex-h em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: var(--tr-normal); opacity: 0.85;
+  }
+  .ex .ex-h em.peach { color: var(--primary); opacity: 1; }
+  .ex .ex-cap {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 14px; line-height: 1.5; opacity: 0.7;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">02.2 ~ Typography</div>
+    <h1>Three <em>families.</em><br/>Two weights. <em>Done.</em></h1>
+    <p class="sub">Restraint is the point. With this much constraint, the type itself becomes the brand mark.</p>
+
+    <div class="families">
+      <div class="fam">
+        <div class="meta">~ Sans · UI &amp; headlines</div>
+        <p class="name sans">Host Grotesk</p>
+        <p class="role">font-black UPPERCASE, tracking-tighter. Used for every headline, button label, nav.</p>
+        <div class="specimen">Weights: 400, 900 only. No 500. No 600.</div>
+      </div>
+      <div class="fam">
+        <div class="meta">~ Serif · Accent &amp; body</div>
+        <p class="name serif">Instrument Serif</p>
+        <p class="role">italic, lowercase. Lives inside headlines as accent words; runs body when narrative.</p>
+        <div class="specimen">Italic only. Body bumps +6% size for legibility.</div>
+      </div>
+      <div class="fam">
+        <div class="meta">~ Mono · Labels</div>
+        <p class="name mono">Geist Mono</p>
+        <p class="role">9–11px, UPPERCASE, tracking-widest. Section numbers, captions, slide counters.</p>
+        <div class="specimen">Never below 9px. Never as body copy.</div>
+      </div>
+    </div>
+
+    <div class="scale-section">
+      <h3>~ Type scale</h3>
+      <div class="row">
+        <div class="label"><b>--t-display</b><br/>96px</div>
+        <div class="specimen" style="font-size:80px;">Filipina.</div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-h1</b><br/>72px</div>
+        <div class="specimen" style="font-size:64px;">Latest <em>writing</em></div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-h2</b><br/>60px</div>
+        <div class="specimen" style="font-size:54px;">Free <em>playbooks</em></div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-h3</b><br/>48px</div>
+        <div class="specimen" style="font-size:40px;">Hi, <em>I am</em> Abie</div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-h5</b><br/>24px</div>
+        <div class="specimen" style="font-size:22px;">Master Claude</div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-body</b><br/>17px</div>
+        <div class="specimen" style="font-family:var(--font-serif); font-style:italic; font-weight:400; font-size:18px; text-transform:none; letter-spacing:0; line-height:1.6;">I document what it actually takes to rebuild your life abroad.</div>
+      </div>
+      <div class="row">
+        <div class="label"><b>--t-mono-sm</b><br/>10px</div>
+        <div class="specimen" style="font-family:var(--font-mono); font-weight:400; font-size:10px; letter-spacing:0.2em;">01 ~ WHO I AM</div>
+      </div>
+    </div>
+
+    <div class="recipe-grid">
+      <div class="ex">
+        <div class="ex-label">~ The signature recipe (light)</div>
+        <h2 class="ex-h">Latest <em>writing.</em></h2>
+        <p class="ex-cap">Sans-black uppercase tight + italic lowercase serif accent.</p>
+      </div>
+      <div class="ex dark">
+        <div class="ex-label">~ Recipe with primary highlight</div>
+        <h2 class="ex-h">Let's <em class="peach">talk.</em></h2>
+        <p class="ex-cap">Same recipe, primary on the accent for emphasis.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

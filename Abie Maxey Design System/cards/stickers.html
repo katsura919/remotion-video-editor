@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stickers</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<style>
+  body { padding: 64px clamp(32px, 6vw, 96px); }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--muted-fg); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    line-height: 0.9; font-size: clamp(48px, 6vw, 72px);
+    margin: 0 0 12px;
+  }
+  h1 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .sub {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 18px; margin: 0 0 48px; max-width: 640px;
+  }
+
+  /* In-context demo */
+  .demo {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 56px clamp(32px, 5vw, 64px) 64px;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .demo .lbl {
+    position: absolute; top: 24px; left: 28px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: var(--tr-mono); text-transform: uppercase;
+    color: var(--primary);
+  }
+  .demo .se {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 20px; margin: 0 0 12px;
+  }
+  .demo .h2 {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: clamp(44px, 6vw, 72px); line-height: 0.92;
+    margin: 0; color: var(--fg);
+  }
+  .demo .h2 em {
+    font-family: var(--font-serif); font-style: italic;
+    text-transform: lowercase; font-weight: 400;
+    letter-spacing: 0; opacity: 0.85;
+  }
+  .demo .stk {
+    position: absolute; top: 32px; right: 64px;
+    width: 160px; height: 160px;
+    transform: rotate(8deg);
+    transition: transform 300ms;
+  }
+  .demo .stk:hover { transform: rotate(-3deg) scale(1.1); }
+
+  /* Library grid */
+  .grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 16px;
+  }
+  @media (max-width: 800px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .tile {
+    aspect-ratio: 1;
+    background: rgba(227,169,156,0.06);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 8px; transition: transform 250ms;
+  }
+  .tile:hover { transform: translateY(-3px) scale(1.04); border-color: rgba(227,169,156,0.5); }
+  .tile img {
+    width: 70%; height: 70%; object-fit: contain;
+    margin-bottom: 4px;
+  }
+  .tile .nm {
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--muted-fg); text-align: center; line-height: 1.2;
+  }
+
+  /* Annotation row */
+  .annot {
+    margin-top: 16px; display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0; border: 1px solid var(--border);
+    border-radius: var(--r-xl); overflow: hidden;
+  }
+  @media (max-width: 800px) { .annot { grid-template-columns: 1fr; } }
+  .annot div {
+    padding: 24px; border-right: 1px solid var(--border);
+  }
+  .annot div:last-child { border-right: 0; }
+  .annot .num {
+    font-family: var(--font-sans); font-weight: 900;
+    text-transform: uppercase; letter-spacing: var(--tr-tighter);
+    font-size: 32px; line-height: 1; color: var(--primary);
+  }
+  .annot .ttl {
+    font-family: var(--font-sans); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    font-size: 12px; margin: 12px 0 6px;
+  }
+  .annot .desc {
+    font-family: var(--font-serif); font-style: italic;
+    color: var(--muted-fg); font-size: 13px; line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">03.2 ~ Stickers</div>
+    <h1>Hand-drawn <em>mascots.</em><br/>The brand's <em>only</em> emoji.</h1>
+    <p class="sub">21 illustrations of Abie in different emotional states. They sit alongside headlines, slightly rotated, and replace every emoji you'd be tempted to use.</p>
+
+    <div class="demo">
+      <div class="lbl">~ In context</div>
+      <p class="se">~ Systems, not checklists</p>
+      <h2 class="h2">Free <em>playbooks</em></h2>
+      <img class="stk" src="../assets/stickers/winking_peace.png" alt="Winking peace sticker" />
+    </div>
+
+    <div class="grid">
+      <div class="tile"><img src="../assets/stickers/smiling_portrait.png" alt=""/><div class="nm">smiling</div></div>
+      <div class="tile"><img src="../assets/stickers/winking_peace.png" alt=""/><div class="nm">winking</div></div>
+      <div class="tile"><img src="../assets/stickers/thumbs_up.png" alt=""/><div class="nm">thumbs up</div></div>
+      <div class="tile"><img src="../assets/stickers/laughing_ha.png" alt=""/><div class="nm">laughing</div></div>
+      <div class="tile"><img src="../assets/stickers/excited_sparkles.png" alt=""/><div class="nm">excited</div></div>
+      <div class="tile"><img src="../assets/stickers/holding_yt.png" alt=""/><div class="nm">YouTube</div></div>
+
+      <div class="tile"><img src="../assets/stickers/thinking_ellipsis.png" alt=""/><div class="nm">thinking</div></div>
+      <div class="tile"><img src="../assets/stickers/shouting_megaphone.png" alt=""/><div class="nm">megaphone</div></div>
+      <div class="tile"><img src="../assets/stickers/sitting_with_laptop.png" alt=""/><div class="nm">sitting</div></div>
+      <div class="tile"><img src="../assets/stickers/working_on_laptop.png" alt=""/><div class="nm">working</div></div>
+      <div class="tile"><img src="../assets/stickers/sleepy_zzz.png" alt=""/><div class="nm">sleepy</div></div>
+      <div class="tile"><img src="../assets/stickers/move_to_spain_playbook.png" alt=""/><div class="nm">spain</div></div>
+
+      <div class="tile"><img src="../assets/stickers/overwhelmed_shocked.png" alt=""/><div class="nm">overwhelmed</div></div>
+      <div class="tile"><img src="../assets/stickers/shocked_worried.png" alt=""/><div class="nm">shocked</div></div>
+      <div class="tile"><img src="../assets/stickers/sad_worried.png" alt=""/><div class="nm">worried</div></div>
+      <div class="tile"><img src="../assets/stickers/crying_tears.png" alt=""/><div class="nm">crying</div></div>
+      <div class="tile"><img src="../assets/stickers/angry_crossed_arms.png" alt=""/><div class="nm">angry</div></div>
+      <div class="tile"><img src="../assets/stickers/furious_on_fire.png" alt=""/><div class="nm">furious</div></div>
+    </div>
+
+    <div class="annot">
+      <div>
+        <div class="num">~80</div>
+        <div class="ttl">to 160px on web</div>
+        <div class="desc">Never below 60px. Detail breaks. Square aspect, transparent background.</div>
+      </div>
+      <div>
+        <div class="num">3°</div>
+        <div class="ttl">slight rotation</div>
+        <div class="desc">Sit slightly off-axis. Hover scales 1.1 + rotates -3deg over 300ms.</div>
+      </div>
+      <div>
+        <div class="num">→</div>
+        <div class="ttl">punctuation, not vocab</div>
+        <div class="desc">Stickers sit beside headings or in margins. Never inside body text.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
