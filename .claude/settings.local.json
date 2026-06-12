@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Skill(remotion-best-practices)"
+      "Skill(remotion-best-practices)",
+      "Bash(Select-Object -First 30)",
+      "PowerShell($path = \"D:\\\\ReactJS\\\\TALENT-MUCHO-CLIENTS\\\\HAPPY VOYAGER\\\\remotion-video\\\\node_modules\\\\@remotion\\\\google-fonts\"; [System.IO.Directory]::GetFiles\\($path\\) | Select-Object -First 5; [System.IO.Directory]::GetDirectories\\($path\\) | Select-Object -First 10)",
+      "PowerShell($path = \"D:\\\\ReactJS\\\\TALENT-MUCHO-CLIENTS\\\\HAPPY VOYAGER\\\\remotion-video\\\\node_modules\\\\@remotion\\\\google-fonts\\\\dist\"; [System.IO.Directory]::GetDirectories\\($path\\) | Select-Object -First 10)"
     ]
   }
 }
